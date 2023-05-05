@@ -87,6 +87,11 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         btnEntriData.setText("1. Entri Data Produk");
+        btnEntriData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntriDataActionPerformed(evt);
+            }
+        });
 
         btnDoDeserialization.setText("3. Lakukan Deserialization");
         btnDoDeserialization.addActionListener(new java.awt.event.ActionListener() {
@@ -198,12 +203,43 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDoSerializationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoSerializationActionPerformed
-        // TODO add your handling code here:
+        FileOutputStream fos;
+        ObjectOutputStream oos;
+        try {
+            fos = new FileOutputStream(new File(path));
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(product);
+            oos.close();
+            fos.close();
+            // baca isi file ke textarea
+            lihatHasilSerialization();
+        } catch(FileNotFoundException e) {
+        } catch(IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_btnDoSerializationActionPerformed
 
     private void btnDoDeserializationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoDeserializationActionPerformed
-        // TODO add your handling code here:
+        FileInputStream fis;
+        ObjectInputStream ois;
+        try {
+            fis = new FileInputStream(new File(path));
+            ois = new ObjectInputStream(fis);
+            Object obj = ois.readObject();
+            Product k2 = (Product) obj;
+            areaDeserialization.setText(k2.toString());
+            ois.close();
+            fis.close();
+        } catch(FileNotFoundException e) {
+        } catch(IOException | ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_btnDoDeserializationActionPerformed
+
+    private void btnEntriDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntriDataActionPerformed
+        AddProduct add = new AddProduct(this, true);
+        add.setVisible(true);
+    }//GEN-LAST:event_btnEntriDataActionPerformed
 
     /**
      * @param args the command line arguments
