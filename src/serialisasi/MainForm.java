@@ -37,6 +37,24 @@ public class MainForm extends javax.swing.JFrame {
                 + "product.ser";
     }
     
+    public void lihatHasilSerialization() {
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            File file = new File(path);
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {                
+                stringBuilder.append(line).append("\r\n");
+            }
+        } catch(IOException e) {
+            System.out.println("Eror guys");
+        }
+        areaSerialization.setText(stringBuilder.toString());
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
