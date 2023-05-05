@@ -4,18 +4,39 @@
  */
 package serialisasi;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author avrians
  */
 public class MainForm extends javax.swing.JFrame {
 
+    public static Product product;
+    private final String path;
+
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
+
+        product = new Product();
+        path = System.getProperty("user.dir") + File.separator
+                + "product.ser";
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
