@@ -49,6 +49,8 @@ public class MainForm extends javax.swing.JFrame {
             while ((line = bufferedReader.readLine()) != null) {                
                 stringBuilder.append(line).append("\r\n");
             }
+            bufferedReader.close();
+            fileReader.close();
         } catch(IOException e) {
             System.out.println("Eror guys");
         }

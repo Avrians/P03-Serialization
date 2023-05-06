@@ -192,7 +192,6 @@ public class AddProduct extends javax.swing.JDialog {
             for(int i = 0; i < row; i++) {
                 String item_name = tabelItem.getValueAt(i, 0).toString();
                 String item_price = tabelItem.getValueAt(i, 1).toString();
-                
                 double price = Double.parseDouble(item_price);
                 ProductItem pi = new ProductItem(item_name, price);
                 p.add(pi);
